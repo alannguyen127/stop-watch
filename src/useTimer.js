@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { formatTime } from "./formatTime";
 
 const useTimer = (ini = 0) => {
   const [time, setTime] = useState(0);
@@ -29,11 +30,7 @@ const useTimer = (ini = 0) => {
   };
 
   function handleLap() {
-    const getSeconds = `0${time % 60}`.slice(-2);
-    const minutes = `${Math.floor(time / 60)}`;
-    const getMinutes = `0${minutes % 60}`.slice(-2);
-    const getHours = `0${Math.floor(time / 3600)}`.slice(-2);
-    const lapTime = getHours + ":" + getMinutes + ":" + getSeconds;
+    const lapTime = formatTime(time);
     setLap((prevLap) => [...prevLap, lapTime]);
   }
 
